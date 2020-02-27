@@ -1,17 +1,17 @@
 ﻿using Books.Domain.Entities;
-using System.Data.Entity.ModelConfiguration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Books.Persistance.Books
 {
-    public class BookConfiguration : EntityTypeConfiguration<Book>
+    public class BookConfiguration : IEntityTypeConfiguration<Book>
     {
-        public BookConfiguration()
+        public void Configure(EntityTypeBuilder<Book> builder)
         {
-            ToTable("Books");
-            HasKey(p => p.Id);
-            Property(p => p.Title).IsRequired().HasMaxLength(150);
-            Property(p => p.Description).IsRequired().HasMaxLength(2500);
-            HasRequired(p => p.Author);
+            builder.HasKey(book => book.Id);
+            builder.Property(book => book.Title).IsRequired().HasMaxLength(150);
+            builder.Property(book => book.Description).IsRequired().HasMaxLength(2500);
+            builder.Property(book => book.Author).IsRequired();
         }
     }
 }

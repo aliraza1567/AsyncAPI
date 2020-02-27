@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Books.Domain.Common;
+using System;
 
 namespace Books.Domain.Entities
 {
-    public class Book
+    public class Book: IEntity
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
