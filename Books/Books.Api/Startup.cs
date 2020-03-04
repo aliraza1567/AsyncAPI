@@ -1,4 +1,6 @@
+using AutoMapper;
 using Books.Persistance;
+using Books.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +23,7 @@ namespace Books.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddAutoMapper(typeof(Startup));
             var dbConnection = Configuration["DatabaseConnection"];
             services.AddDbContext<BooksContext>(builder => builder.UseSqlServer(dbConnection));
         }

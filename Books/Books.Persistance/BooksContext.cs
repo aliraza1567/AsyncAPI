@@ -1,9 +1,10 @@
-﻿using Books.Application.Interfaces;
-using Books.Domain.Entities;
+﻿using System.Reflection;
+using Books.Application.Interfaces;
+using Books.Domain.Authors;
+using Books.Domain.Books;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
-namespace Books.Persistance
+namespace Books.Persistence
 {
     public class BooksContext: DbContext, IBooksContext
     {

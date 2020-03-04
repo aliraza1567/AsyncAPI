@@ -1,7 +1,7 @@
-﻿using Books.Domain.Common;
-using System;
+﻿using System;
+using Books.Domain.Common;
 
-namespace Books.Domain.Entities
+namespace Books.Domain.Authors
 {
     public class Author: IEntity
     {
