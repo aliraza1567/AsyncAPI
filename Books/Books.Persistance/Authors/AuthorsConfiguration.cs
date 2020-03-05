@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Books.Persistance.Authors
+namespace Books.Persistence.Authors
 {
     public class AuthorsConfiguration : IEntityTypeConfiguration<Author>
     {

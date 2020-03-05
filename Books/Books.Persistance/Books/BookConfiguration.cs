@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Books.Persistance.Books
+namespace Books.Persistence.Books
 {
     public class BookConfiguration : IEntityTypeConfiguration<Book>
     {
@@ -11,7 +11,7 @@ namespace Books.Persistance.Books
             builder.HasKey(book => book.Id);
             builder.Property(book => book.Title).IsRequired().HasMaxLength(150);
             builder.Property(book => book.Description).IsRequired().HasMaxLength(2500);
-            builder.Property(book => book.Author).IsRequired();
+            builder.HasOne(book => book.Author);
         }
     }
 }

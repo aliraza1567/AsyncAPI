@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Books.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 
-namespace Books.Application.Books.Queries
+namespace Books.Application.Books.Queries.BookDetail
 {
-    public interface IGetBookDetailQuery
-    {
-        Task<BookModel> ExecuteAsync(Guid id);
-    }
-
     public class GetBookDetailQuery: IGetBookDetailQuery, IDisposable
     {
         private IBooksContext _booksContext;
@@ -24,10 +16,10 @@ namespace Books.Application.Books.Queries
             _booksContext = booksContext;
             _mapper = mapper;
         }
-        public async Task<BookModel> ExecuteAsync(Guid id)
+        public async Task<BookDto> ExecuteAsync(Guid id)
         {
             var book = await _booksContext.Books.Include(a => a.Author).FirstOrDefaultAsync(b => b.Id == id);
-            var bookModel = _mapper.Map<BookModel>(book);
+            var bookModel = _mapper.Map<BookDto>(book);
 
             return bookModel;
         }
@@ -40,14 +32,13 @@ namespace Books.Application.Books.Queries
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                if (_booksContext != null)
-                {
-                    _booksContext.Dispose();
-                    _booksContext = null;
-                }
-            }
+            if (!disposing)
+                return;
+            if (_booksContext == null)
+                return;
+
+            _booksContext.Dispose();
+            _booksContext = null;
         }
     }
 }

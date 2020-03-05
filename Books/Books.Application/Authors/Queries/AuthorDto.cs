@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Books.Application.Authors.Queries
 {
-    public class AuthorModel
+    public class AuthorDto
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
