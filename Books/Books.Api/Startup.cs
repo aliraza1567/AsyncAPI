@@ -1,5 +1,6 @@
 using AutoMapper;
 using Books.Api.Common;
+using Books.Application.Books.Commands.CreateBook;
 using Books.Application.Books.Queries.AllBooks;
 using Books.Application.Books.Queries.BookDetail;
 using Books.Application.Interfaces;
@@ -29,11 +30,12 @@ namespace Books.Api
             services.AddControllers();
             services.AddAutoMapper(typeof(MapperProfile));
             var dbConnection = Configuration["ConnectionStrings:DatabaseConnection"];
-            services.AddDbContext<BooksContext>(builder => builder.UseSqlServer(dbConnection));
+            services.AddDbContext<IBooksContext, BooksContext>(builder => builder.UseSqlServer(dbConnection));
 
-            services.AddScoped<IBooksContext, BooksContext>();
+            //services.AddScoped<IBooksContext, BooksContext>();
             services.AddScoped<IGetBookDetailQuery, GetBookDetailQuery>();
             services.AddScoped<IGetAllBooksQuery, GetAllBooksQuery>();
+            services.AddScoped<ICreateBookCommand, CreateBookCommand>();
 
             services.AddSwaggerGen(c =>
             {

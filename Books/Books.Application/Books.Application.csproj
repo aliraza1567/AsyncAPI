@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Authors\Commands\" />
-    <Folder Include="Books\Commands\" />
   </ItemGroup>
 
 </Project>
